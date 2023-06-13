@@ -7,8 +7,8 @@ import Quiz from './Quiz'
 function Category() {
     const URL = 'https://opentdb.com/api_category.php'
     const [categories, setCategories] = useState([])
-    const [categoryID, setCategoryID] = useState()
-    
+    const [categoryID, setCategoryID] = useState(null)
+
     
     useEffect(() => {
     axios.get(URL).then((response) => setCategories(response.data.trivia_categories))}, [])
@@ -16,12 +16,13 @@ function Category() {
     const handleCategoryID = (id) => {
         setCategoryID(id)
     }
-    
-    console.log(categories)
-    console.log(categoryID)
 
+
+
+    console.log(categoryID)
     return (
     <>
+    {categoryID ? <Quiz categoryID={categoryID} /> : 
         <div>
             <h2>Please Pick a Trivia Category</h2>
             {categories.map(category => (
@@ -29,17 +30,22 @@ function Category() {
                     <button onClick = {() => handleCategoryID(category.id)}>{category.name}</button>
                 </ul>
             ))}
-            {categoryID && <Quiz categoryID={categoryID}/>}
-        </div>
+        </div>}
     </>
     )
 }
 
 export default Category
 
+
+// 
+
+// formatting the get request
 // update/refresh state of quizes when button is clicked
-// display <Quiz /> properl
+// display <Quiz /> properly
+// npm he (translates strings)
+
 //     return (
     // categoryID ? <Quiz categoryID={categoryID} /> : ( 
-
+        {/* {categoryID && <Quiz categoryID={categoryID}/>} */}
     // )

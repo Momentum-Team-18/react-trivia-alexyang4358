@@ -40,3 +40,50 @@
 .read-the-docs {
   color: #888;
 }
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  color: #888;
+}
+
+.slide {
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: row;
+  font-family: sans-serif;
+  margin: 10%;
+  object-fit: contain;
+  /* position: absolute; */
+}
+
+.paragraph {
+  color: #c0baba;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+.content {
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.title {
+  font-size: 30px;
+  color: #ffffff;
+  line-height: 36px;
+}
+
+.image {
+  height: 90%;
+  width: 40%;
+  border-radius: 25px;
+}
+
+.button {
+  margin: 10px;
+}
