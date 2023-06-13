@@ -3,14 +3,13 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 
 
-function Quiz() {
+function Quiz( {categoryID} ) {
+    const catURL = `https://opentdb.com/api.php?amount=10&category=${categoryID}`
     const [questions, setQuestions] = useState([])
-    const catURL = 'https://opentdb.com/api.php?amount=10&category=9'
+    const [currentQuestion, setCurrentQuestion] = useState(0)
 
     useEffect(() => {
     axios.get(catURL).then((response) => setQuestions(response.data.results))}, [])
-
-    console.log(questions)
 
     return (
     <>
@@ -28,3 +27,4 @@ function Quiz() {
 }
 
 export default Quiz
+

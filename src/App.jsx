@@ -1,13 +1,12 @@
 import './App.css'
-import Category from './Category'
-import Quiz from './Quiz'
+import Category from './components/Category'
+import Quiz from './components/Quiz'
 
 function App() {
 
   return (
     <>
       <Category />
-      <Quiz />
     </>
   )
 }
