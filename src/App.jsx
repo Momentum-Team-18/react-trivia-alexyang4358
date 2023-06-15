@@ -6,7 +6,7 @@ import { useState } from 'react'
 function App() {
 
   // const [selectedCategory, setSelectedCategory] = useState('')
-  // {selectedCategory ? <Category /> : <Quiz />}
+  // {selectedCategory ? <Category id={categoryID}/> : <Quiz />}
 
   return (
     <>

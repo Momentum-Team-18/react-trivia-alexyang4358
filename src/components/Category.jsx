@@ -1,44 +1,48 @@
-import React from 'react'
-import axios from 'axios'
-import { useState, useEffect } from 'react'
-import Quiz from './Quiz'
-
+import React from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import Quiz from "./Quiz";
 
 function Category() {
-    const URL = 'https://opentdb.com/api_category.php'
-    const [categories, setCategories] = useState([])
-    const [categoryID, setCategoryID] = useState(null)
+  const URL = "https://opentdb.com/api_category.php";
+  const [categories, setCategories] = useState([]);
+  const [categoryID, setCategoryID] = useState(null);
 
-    
-    useEffect(() => {
-    axios.get(URL).then((response) => setCategories(response.data.trivia_categories))}, [])
-    
-    const handleCategoryID = (id) => {
-        setCategoryID(id)
-    }
+  useEffect(() => {
+    axios
+      .get(URL)
+      .then((response) => setCategories(response.data.trivia_categories));
+  }, []);
 
+  const handleCategoryID = (id) => {
+    setCategoryID(id);
+  };
 
-
-    console.log(categoryID)
-    return (
+  return (
     <>
-    {categoryID ? <Quiz categoryID={categoryID} /> : 
-        <div>
-            <h2>Please Pick a Trivia Category</h2>
-            {categories.map(category => (
-                <ul key={category.id}>
-                    <button onClick = {() => handleCategoryID(category.id)}>{category.name}</button>
-                </ul>
-            ))}
-        </div>}
+      {categoryID ? (
+        <Quiz categoryID={categoryID} />
+      ) : (
+        <div className="content">
+          <h1 className="title">Please Pick a Trivia Category</h1>
+          {categories.map((category) => (
+            <button
+              key={category.id}
+              className="button"
+              onClick={() => handleCategoryID(category.id)}
+            >
+              {category.name}
+            </button>
+          ))}
+        </div>
+      )}
     </>
-    )
+  );
 }
 
-export default Category
+export default Category;
 
-
-// 
+//
 
 // formatting the get request
 // update/refresh state of quizes when button is clicked
@@ -46,6 +50,8 @@ export default Category
 // npm he (translates strings)
 
 //     return (
-    // categoryID ? <Quiz categoryID={categoryID} /> : ( 
-        {/* {categoryID && <Quiz categoryID={categoryID}/>} */}
-    // )
+// categoryID ? <Quiz categoryID={categoryID} /> : (
+{
+  /* {categoryID && <Quiz categoryID={categoryID}/>} */
+}
+// )
