@@ -1,16 +1,13 @@
 import { useState } from "react";
 import React from "react";
 import he from "he";
+import arrayShuffle from "shuffle-array";
 
 function Answers({ questions, currentQuestion }) {
-  // console.log({ questions });
-  // console.log({ currentQuestion });
-  // console.log(newArray);
+  const [theRightAnswer, setTheRightAnswer] = useState("");
+  const [theWrongAnswer, setTheWrongAnswer] = useState([]);
+  const [score, setScore] = useState(0);
 
-  // useState hooks required: [score, setScore] = (0) | [incorrectAnswers, setIncorrectAnswers] = ([])
-  // [correctAnswer, setCorrectAnswer] = ()
-
-  // answers need to shuffle those answers (import shuffle)
   // compare user selection with correct answer
   // if user gets answer correct show 'good job' otherwise show 'incorrect'/move to next question
 
@@ -19,22 +16,30 @@ function Answers({ questions, currentQuestion }) {
   // onclick function and pass in handleCorrectAnswer
   // setCorrectAnswer(correctAnswer === correctAnswer)
 
-  const newArray = [
+  const newArray = arrayShuffle([
     questions[currentQuestion].correct_answer,
     ...questions[currentQuestion].incorrect_answers,
-  ];
+  ]);
 
   const correctAnswer = questions[currentQuestion].correct_answer;
 
+  console.log(correctAnswer);
+
   const handleAnswer = (clickedAnswer) => {
-    console.log("this is the", { clickedAnswer });
+    if (clickedAnswer === correctAnswer) {
+      console.log("Good Job");
+      setScore(score + 1);
+    } else {
+      console.log("Incorrect");
+    }
   };
 
   return (
     <>
-      {/* map through array of incorrect answers and display the answers as buttons so we can click on them  */}
       {/* once a user clicks on an answer it will display 'correct' or 'wrong' and move to next question */}
       {/* update score state after each question and display correctly answered questions at the end 4/10*/}
+
+      {/* Mapped through array of answers for each instance of questions. Displayed them as buttons. */}
       {newArray.map((answer) => (
         <button
           onClick={() => handleAnswer(answer)}
@@ -49,3 +54,7 @@ function Answers({ questions, currentQuestion }) {
 }
 
 export default Answers;
+
+// console.log({ questions });
+// console.log({ currentQuestion });
+// console.log(newArray);
