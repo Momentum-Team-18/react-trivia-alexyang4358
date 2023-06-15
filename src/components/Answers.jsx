@@ -3,8 +3,10 @@ import React from "react";
 import he from "he";
 
 function Answers({ questions, currentQuestion }) {
-  console.log({ questions });
-  console.log({ currentQuestion });
+  // console.log({ questions });
+  // console.log({ currentQuestion });
+  // console.log(newArray);
+
   // useState hooks required: [score, setScore] = (0) | [incorrectAnswers, setIncorrectAnswers] = ([])
   // [correctAnswer, setCorrectAnswer] = ()
 
@@ -12,18 +14,21 @@ function Answers({ questions, currentQuestion }) {
   // compare user selection with correct answer
   // if user gets answer correct show 'good job' otherwise show 'incorrect'/move to next question
 
-  const [showAnswers, setShowAnswers] = [];
-
-  // console.log(questions[currentQuestion].correct_answer);
-
-  const correctAnswer = questions[currentQuestion].correct_answer;
+  //if the button click is = to the currentquestion.correct_answer we will return 'good job' or return 'that was wrong'
+  // correctAnswer, setCorrectAnswer = ()
+  // onclick function and pass in handleCorrectAnswer
+  // setCorrectAnswer(correctAnswer === correctAnswer)
 
   const newArray = [
     questions[currentQuestion].correct_answer,
     ...questions[currentQuestion].incorrect_answers,
   ];
 
-  console.log(newArray);
+  const correctAnswer = questions[currentQuestion].correct_answer;
+
+  const handleAnswer = (clickedAnswer) => {
+    console.log("this is the", { clickedAnswer });
+  };
 
   return (
     <>
@@ -31,7 +36,11 @@ function Answers({ questions, currentQuestion }) {
       {/* once a user clicks on an answer it will display 'correct' or 'wrong' and move to next question */}
       {/* update score state after each question and display correctly answered questions at the end 4/10*/}
       {newArray.map((answer) => (
-        <button className="button" key={answer}>
+        <button
+          onClick={() => handleAnswer(answer)}
+          className="button"
+          key={answer}
+        >
           {he.decode(answer)}
         </button>
       ))}
