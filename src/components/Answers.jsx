@@ -7,6 +7,7 @@ function Answers({ questions, currentQuestion }) {
   const [theRightAnswer, setTheRightAnswer] = useState("");
   const [theWrongAnswer, setTheWrongAnswer] = useState([]);
   const [score, setScore] = useState(0);
+  const [onPage, setOnPage] = useState("");
 
   // compare user selection with correct answer
   // if user gets answer correct show 'good job' otherwise show 'incorrect'/move to next question
@@ -27,10 +28,10 @@ function Answers({ questions, currentQuestion }) {
 
   const handleAnswer = (clickedAnswer) => {
     if (clickedAnswer === correctAnswer) {
-      console.log("Good Job");
       setScore(score + 1);
+      setOnPage("Good Job, that was right.");
     } else {
-      console.log("Incorrect");
+      setOnPage("That was wrong.");
     }
   };
 
@@ -49,6 +50,8 @@ function Answers({ questions, currentQuestion }) {
           {he.decode(answer)}
         </button>
       ))}
+      <p>{onPage}</p>
+      <p>This is your score: {score}</p>
     </>
   );
 }
@@ -58,3 +61,7 @@ export default Answers;
 // console.log({ questions });
 // console.log({ currentQuestion });
 // console.log(newArray);
+
+// if the right answer is clicked display this
+// if the wrong answer is clicked display something else
+// onPage refresh
