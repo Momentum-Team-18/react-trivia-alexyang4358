@@ -5,7 +5,7 @@ import Category from "./Category";
 import Answers from "./Answers";
 import he from "he";
 
-function Quiz({ categoryID, categories }) {
+function Quiz({ categoryID, categories, onPage }) {
   const catURL = `https://opentdb.com/api.php?amount=10&category=${categoryID}`;
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -15,7 +15,8 @@ function Quiz({ categoryID, categories }) {
   }, [categoryID]);
 
   const handleNextQuestion = () => {
-    setCurrentQuestion(currentQuestion + 1);
+    setCurrentQuestion(currentQuestion + 1, onPage);
+    console.log((onPage = ""));
   };
 
   const handleGoBack = () => {
@@ -30,7 +31,11 @@ function Quiz({ categoryID, categories }) {
             <h1 className="title">
               {he.decode(questions[currentQuestion].question)}
             </h1>
-            <Answers questions={questions} currentQuestion={currentQuestion} />
+            <Answers
+              onPage={onPage}
+              questions={questions}
+              currentQuestion={currentQuestion}
+            />
             <div className="content">
               <button className="button" onClick={handleGoBack}>
                 Go Back
@@ -42,6 +47,7 @@ function Quiz({ categoryID, categories }) {
               >
                 Next Question
               </button>
+              <div>{onPage}</div>
             </div>
           </div>
         </section>
